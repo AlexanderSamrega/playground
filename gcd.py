@@ -15,15 +15,14 @@ def gcd(a, b, *, table=False):
     vector_b = (0, 1, b)
     steps = PrettyTable(['x', 'y', 'r'])
     steps.add_row(vector_a)
-    steps.add_row(vector_b)
-    while vector_a[2] % vector_b[2]:
+    while vector_b[2] > 0:
+        steps.add_row(vector_b)
         q = vector_a[2] // vector_b[2]
         x = vector_a[0] - vector_b[0] * q
         y = vector_a[1] - vector_b[1] * q
         r = vector_a[2] % vector_b[2]
         vector_a = vector_b
         vector_b = (x, y, r)
-        steps.add_row(vector_b)
     if table:
         print(steps)
         print(f'GCD of {a} and {b} is {r} == {a} * ({x}) + {b} * ({y})')
